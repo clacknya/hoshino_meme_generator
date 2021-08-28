@@ -1,0 +1,15 @@
+[{
+        "font": "font.ttf",
+        "font_size": 90,
+        "text_color": [0, 0, 0],
+        "text_spacing": 16,
+        "text_align": "center",
+        "text_orientation": "horizontal",
+        "target_coords": [
+            [0.0, 0.0],
+            [682.1727463000001, 0.0],
+            [682.1727463000001, 444.25592900000004],
+            [0.0, 444.25592900000004]
+        ]
+    }
+]

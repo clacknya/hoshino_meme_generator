@@ -1,0 +1,28 @@
+[{
+        "font": "font.ttf",
+        "font_size": 32,
+        "text_color": "black",
+        "text_spacing": 4,
+        "text_align": "center",
+        "text_orientation": "horizontal",
+        "target_coords": [
+            [5, 7],
+            [314, 7],
+            [314, 90],
+            [5, 90]
+        ]
+    }, {
+        "font": "font.ttf",
+        "font_size": 32,
+        "text_color": "black",
+        "text_spacing": 4,
+        "text_align": "center",
+        "text_orientation": "horizontal",
+        "target_coords": [
+            [5, 277],
+            [314, 277],
+            [314, 360],
+            [5, 360]
+        ]
+    }
+]

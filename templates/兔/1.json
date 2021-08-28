@@ -1,0 +1,28 @@
+[{
+        "font": "font.ttf",
+        "font_size": 150,
+        "text_color": "black",
+        "text_spacing": 8,
+        "text_align": "center",
+        "text_orientation": "horizontal",
+        "target_coords": [
+            [135, 236.39],
+            [613, 236.39],
+            [613, 585.39],
+            [135, 585.39]
+        ]
+    }, {
+        "font": "font.ttf",
+        "font_size": 120,
+        "text_color": "black",
+        "text_spacing": 8,
+        "text_align": "center",
+        "text_orientation": "horizontal",
+        "target_coords": [
+            [50, 1720],
+            [1998, 1720],
+            [1998, 1998],
+            [50, 1998]
+        ]
+    }
+]
