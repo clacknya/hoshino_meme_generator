@@ -1,6 +1,6 @@
 [{
         "font": "font.ttf",
-        "font_size": 24,
+        "font_size": 36,
         "text_color": "black",
         "text_spacing": 0,
         "text_align": "center",

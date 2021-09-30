@@ -1,6 +1,6 @@
 [{
         "font": "font.ttf",
-        "font_size": 150,
+        "font_size": 600,
         "text_color": [0, 0, 0],
         "text_spacing": 16,
         "text_align": "center",

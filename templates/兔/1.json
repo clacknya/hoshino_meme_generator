@@ -1,6 +1,6 @@
 [{
         "font": "font.ttf",
-        "font_size": 150,
+        "font_size": 240,
         "text_color": "black",
         "text_spacing": 8,
         "text_align": "center",
@@ -13,7 +13,7 @@
         ]
     }, {
         "font": "font.ttf",
-        "font_size": 120,
+        "font_size": 300,
         "text_color": "black",
         "text_spacing": 8,
         "text_align": "center",

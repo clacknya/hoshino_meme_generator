@@ -68,9 +68,10 @@ async def test():
 	pp.pprint(all_templates)
 
 	# msg = '哈哈❤哈\\n喵哈\\nAQj\n哈哈❤哈\\n喵哈\\nAQj'
-	msg = '这是一段有点长的文字\n这是一段有点长的文字'
+	# msg = '这是一段有点长的文字\n这是一段有点长的文字'
+	msg = '龍\n龍'
 
-	await memegen(all_templates, '邪神酱:1', msg)
+	await memegen(all_templates, '本间向日葵:1', msg)
 
 async def test_all():
 	all_templates = meme_generator.get_templates_all()
