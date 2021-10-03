@@ -67,9 +67,9 @@ async def test():
 	all_templates = meme_generator.get_templates_all()
 	pp.pprint(all_templates)
 
-	# msg = '哈哈❤哈\\n喵哈\\nAQj\n哈哈❤哈\\n喵哈\\nAQj'
+	msg = '哈哈❤哈\\n喵哈\\nAQj\n哈哈❤哈\\n喵哈\\nAQj'
 	# msg = '这是一段有点长的文字\n这是一段有点长的文字'
-	msg = '龍\n龍'
+	# msg = '龍\n龍'
 
 	await memegen(all_templates, '本间向日葵:1', msg)
 
@@ -88,12 +88,12 @@ async def main():
 	pp = pprint.PrettyPrinter(indent=4)
 
 	# await memeprev()
-	# await test_all()
-	await test()
+	await test_all()
+	# await test()
 
 if __name__ == '__main__':
 	tracemalloc.start()
-	# meme_generator.__test__ = True
+	meme_generator.__test__ = True
 	try:
 		asyncio.run(main())
 	except KeyboardInterrupt:

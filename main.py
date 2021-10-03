@@ -7,6 +7,7 @@ from hoshino import Service, R
 from hoshino.typing import CQEvent, MessageSegment
 
 import os
+import re
 import json
 import random
 import aiofiles
@@ -103,3 +104,9 @@ async def memegen(bot, ev: CQEvent):
 	img_res = get_user_image_res(uid)
 	meme.save(img_res.path)
 	await bot.send(ev, img_res.cqcode, at_sender=True)
+
+# @sv.on_message('group')
+# async def do_postscript(bot, ev: CQEvent):
+	# match = re.search(r'\[CQ:reply,id=(-?\d+)\](.+)', str(ev.message))
+	# 附言
+

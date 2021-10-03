@@ -54,12 +54,7 @@ def get_middle_box_coords(config: dict) -> list:
 	(X, Y) = zip(*target_coords)
 	X = sorted(X)
 	Y = sorted(Y)
-	if config['text_orientation'] == 'horizontal':
-		return [(X[0], (Y[0]+Y[1])/2), (X[-1], (Y[-2]+Y[-1])/2)]
-	elif config['text_orientation'] == 'vertical':
-		return [((X[0]+X[1])/2, Y[0]), ((X[-2]+X[-1])/2, Y[-1])]
-	else:
-		raise ValueError('unsupported text_orientation value')
+	return [((X[0]+X[1])/2, (Y[0]+Y[1])/2), ((X[-2]+X[-1])/2, (Y[-2]+Y[-1])/2)]
 
 def get_outer_box_coords(config: dict) -> list:
 	(X, Y) = zip(*config['target_coords'])
@@ -226,7 +221,7 @@ def get_text_image(text: str, config: dict={}) -> Image.Image:
 				# language=None,
 				stroke_width=0,
 				stroke_fill=None,
-				embedded_color=False
+				embedded_color=True,
 			)
 			top += line_size[1] + config['text_spacing']
 
