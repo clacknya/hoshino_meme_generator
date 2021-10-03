@@ -87,8 +87,8 @@ async def main():
 	global pp
 	pp = pprint.PrettyPrinter(indent=4)
 
-	# await memeprev()
-	await test_all()
+	await memeprev()
+	# await test_all()
 	# await test()
 
 if __name__ == '__main__':

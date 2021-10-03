@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from typing import Optional, Union, Tuple, List, Dict, TypedDict, NoReturn
+
 import os
 import json
 import numpy
@@ -8,6 +10,30 @@ from PIL import Image, ImageFont, ImageColor, ImageDraw
 import re
 import io
 import aiofiles
+
+TypeFilename = str
+TypeColor = Union[
+	Tuple[int, int, int, Optional[int]],
+	List[int, int, int, Optional[int]],
+	str,
+]
+
+class TypeConfig(TypedDict):
+	font: str
+	font_size: int
+	text_color: TypeColor
+	text_spacing: int
+	text_align: str
+	text_orientation: str
+	target_coords: List[
+		List[float, float],
+		List[float, float],
+		List[float, float],
+		List[float, float],
+	]
+
+TypeTemplate = Tuple[TypeFilename, TypeConfig]
+TypeTemplates = Dict[str, TypeTemplate]
 
 __test__ = False
 
@@ -18,7 +44,7 @@ PATH_FONT_DEFAULT = os.path.join(PATH_FONTS, 'font.ttf')
 
 SEP = ':'
 
-def find_coeffs(source_coords: list, target_coords: list):
+def find_coeffs(source_coords: list, target_coords: list) -> numpy.ndarray:
 	matrix = []
 	for s, t in zip(source_coords, target_coords):
 		matrix.append([t[0], t[1], 1, 0, 0, 0, -s[0]*t[0], -s[0]*t[1]])
@@ -62,13 +88,10 @@ def get_outer_box_coords(config: dict) -> list:
 	return [(X[0], Y[0]), (X[-1], Y[-1])]
 
 async def load_image(path: str) -> Image.Image:
-	# with open(path, 'rb') as f:
-		# return Image.open(io.BytesIO(f.read()))
 	async with aiofiles.open(path, 'rb') as f:
 		return Image.open(io.BytesIO(await f.read()))
 
-# {name: (image, config), }
-def get_templates_all() -> dict:
+def get_templates_all() -> TypeTemplates:
 	result = {}
 	for path, dirs, files in os.walk(PATH_TEMPLATES):
 		if files:
@@ -82,7 +105,7 @@ def get_templates_all() -> dict:
 					name = SEP.join(components + [basename])
 					if name in result:
 						continue
-					config_file = basename+'.json'
+					config_file = basename + '.json'
 					if config_file in files:
 						result[name] = (
 							os.path.join(path, filename),
@@ -90,20 +113,16 @@ def get_templates_all() -> dict:
 						)
 	return result
 
-def get_templates(name: str, templates: dict) -> dict:
+def get_templates(name: str, templates: dict) -> TypeTemplates:
 	r = re.compile(f"^{name}($|:)")
 	match = list(filter(r.match, templates.keys()))
 	return {k: templates[k] for k in match}
 
-async def load_templates(template: tuple) -> (Image.Image, dict):
+async def load_templates(template: tuple) -> (Image.Image, TypeTemplate):
 	(image_file, config_file) = template
-	# with Image.open(image_file) as f:
-		# image = f.convert("RGBA")
 	f = await load_image(image_file)
 	image = f.convert("RGBA")
 	f.close()
-	# with open(config_file, 'r') as f:
-		# config = json.load(f)
 	async with aiofiles.open(config_file, 'r') as f:
 		config = json.loads(await f.read())
 	return (image, config)
