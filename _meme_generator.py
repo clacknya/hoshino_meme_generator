@@ -14,7 +14,8 @@ import aiofiles
 TypeFilename = str
 TypeColor = Union[
 	Tuple[int, int, int, Optional[int]],
-	List[int, int, int, Optional[int]],
+	# List[int, int, int, Optional[int]],
+	List[int],
 	str,
 ]
 
@@ -25,11 +26,17 @@ class TypeConfig(TypedDict):
 	text_spacing: int
 	text_align: str
 	text_orientation: str
-	target_coords: List[
-		List[float, float],
-		List[float, float],
-		List[float, float],
-		List[float, float],
+	# target_coords: List[
+		# List[float, float],
+		# List[float, float],
+		# List[float, float],
+		# List[float, float],
+	# ]
+	target_coords: Tuple[
+		Tuple[float, float],
+		Tuple[float, float],
+		Tuple[float, float],
+		Tuple[float, float],
 	]
 
 TypeTemplate = Tuple[TypeFilename, TypeConfig]
