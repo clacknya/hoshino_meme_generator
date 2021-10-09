@@ -25,7 +25,13 @@ TypeTemplate = Tuple[TypeFilename, TypeMemeConfig]
 TypeMemename = str
 TypeTemplates = Dict[TypeMemename, TypeTemplate]
 
+PATH_ROOT = os.path.dirname(os.path.abspath(__file__))
+PATH_TEMPLATES = os.path.join(PATH_ROOT, 'templates')
+PATH_FONTS = os.path.join(PATH_ROOT, 'fonts')
+
 class MemeGenerator():
+
+	PATH_FONT_DEFAULT = os.path.join(PATH_FONTS, 'font.ttf')
 
 	def __init__(self, image_file: str, config_file: str):
 		self._image_file = image_file
@@ -36,6 +42,11 @@ class MemeGenerator():
 		self.image = image.convert("RGBA")
 		image.close()
 		self.config = self.set_default_config(await self.load_config())
+		self.font = ImageFont.truetype(
+			font=self.config['font']['file'],
+			size=self.config['font']['size'],
+			index=0, encoding='unic', layout_engine=None,
+		)
 		return self
 
 	async def __aexit__(self, exc_type, exc_value, traceback) -> NoReturn:
@@ -52,7 +63,7 @@ class MemeGenerator():
 	def set_default_config(self, config: TypeMemeConfig) -> TypeMemeConfig:
 		return config
 
-	def get_multiline_textsize(self, lines: list, font: ImageFont.FreeTypeFont, spacing: int=4) -> Tuple[int, int]:
+	def get_multiline_textsize(self, lines: List[str], font: ImageFont.FreeTypeFont, spacing: Optional[int]=None) -> Tuple[int, int]:
 		sizes = [font.getsize(line) for line in lines]
 		return (max(sizes)[0], sum(list(zip(*sizes))[1])+spacing*(len(sizes)-1))
 
