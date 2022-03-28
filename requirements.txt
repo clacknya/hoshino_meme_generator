@@ -1,4 +1,4 @@
 numpy
 Pillow
 aiofiles
-aiorwlock
+aiorwlock==1.0.0
